@@ -5,7 +5,27 @@
 <mapper namespace="com.yazao.ssm.mapper.CustomerMapper">
 
     <select id="findByPage" parameterType="queryVo" resultType="customer">
-        select * from customer c
+        <!-- select * from customer c -->
+        select
+
+        cust_id,
+        cust_name,
+        cust_user_id,
+        cust_create_id,
+        b1.dict_item_name cust_source,
+        b2.dict_item_name cust_industry,
+        b3.dict_item_name cust_level,
+        cust_linkman,
+        cust_phone,
+        cust_mobile,
+        cust_zipcode,
+        cust_address,
+        cust_createtime
+
+        from customer c left join base_dict b1 on c.cust_source = b1.dict_id
+                        left join base_dict b2 on c.cust_industry = b2.dict_id
+                        left join base_dict b3 on c.cust_level = b3.dict_id
+
         <include refid="findCustomerWhere"></include>
 
         <!-- mybatis 的 mapper.xml文件中不支持 表达式 ，所以  起始角标 start 需要外面传递  -->
