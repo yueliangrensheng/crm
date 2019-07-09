@@ -34,20 +34,20 @@
     </select>
 
     <select id="findTotalCount" parameterType="queryVo" resultType="int">
-        select count(*) from customer
+        select count(*) from customer c
         <include refid="findCustomerWhere"></include>
     </select>
 
     <sql id="findCustomerWhere">
         <where>
             <if test="custName != null and custName != '' ">
-                c.cust_name like '%%{custName}%'
+                c.cust_name like '%${custName}%'
             </if>
             <if test="custSource != null and custSource != '' ">
                 and c.cust_source=#{custSource}
             </if>
             <if test="custIndustry != null and custIndustry != '' ">
-                and c.cust_source=#{custIndustry}
+                and c.cust_industry=#{custIndustry}
             </if>
             <if test="custLevel != null and custLevel != '' ">
                 and c.cust_level=#{custLevel}
