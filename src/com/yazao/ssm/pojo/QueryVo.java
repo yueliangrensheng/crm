@@ -9,6 +9,16 @@ public class QueryVo {
     private String custIndustry;//客户所属行业
     private String custLevel;//客户级别
 
+    private int start;// 分页查询的起始位置
+
+    public int getStart() {
+        return start;
+    }
+
+    public void setStart(int start) {
+        this.start = start;
+    }
+
     public int getCurrentPage() {
         return currentPage;
     }

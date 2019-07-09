@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yazao.ssm.mapper.CustomerMapper">
+
+    <select id="findByPage" parameterType="queryVo" resultType="customer">
+        select * from customer c
+        <include refid="findCustomerWhere"></include>
+
+        <!-- mybatis 的 mapper.xml文件中不支持 表达式 ，所以  起始角标 start 需要外面传递  -->
+        LIMIT #{start},#{pageSize}
+
+    </select>
+
+    <select id="findTotalCount" parameterType="queryVo" resultType="int">
+        select count(*) from customer
+        <include refid="findCustomerWhere"></include>
+    </select>
+
+    <sql id="findCustomerWhere">
+        <where>
+            <if test="custName != null and custName != '' ">
+                c.cust_name like '%%{custName}%'
+            </if>
+            <if test="custSource != null and custSource != '' ">
+                and c.cust_source=#{custSource}
+            </if>
+            <if test="custIndustry != null and custIndustry != '' ">
+                and c.cust_source=#{custIndustry}
+            </if>
+            <if test="custLevel != null and custLevel != '' ">
+                and c.cust_level=#{custLevel}
+            </if>
+        </where>
+    </sql>
+</mapper>
