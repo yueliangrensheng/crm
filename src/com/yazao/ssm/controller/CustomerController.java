@@ -1,6 +1,7 @@
 package com.yazao.ssm.controller;
 
 import com.yazao.ssm.pojo.BaseDict;
+import com.yazao.ssm.pojo.QueryVo;
 import com.yazao.ssm.service.BaseDictService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -24,7 +25,7 @@ public class CustomerController {
     private BaseDictService baseDictService;
 
     @RequestMapping(value = "/list")
-    public String list(Model model) {
+    public String list(QueryVo queryVo,Model model) {
         //客户来源
         List<BaseDict> sourceList = baseDictService.findByTypeCode(baseDictSource);
         //客户行业
