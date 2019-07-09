@@ -29,7 +29,7 @@ public class CustomerController {
     private CustomerService customerService;
 
     @RequestMapping(value = "/list")
-    public String list(QueryVo queryVo,Model model) {
+    public String list(QueryVo queryVo, Model model) {
 
         //初始化条件查询的数据
         //客户来源
@@ -46,7 +46,14 @@ public class CustomerController {
 
         //加载分页数据
         PageBean pageBean = customerService.findByPage(queryVo);
-        model.addAttribute("page",pageBean); //page： 根据customer.jsp页面中的获取数据的参数定
+        model.addAttribute("page", pageBean); //page： 根据customer.jsp页面中的获取数据的参数定
+
+
+        //回显数据 --- 选择查询条件后 结果后，页面上的查询条件依然显示 所选的条件
+        model.addAttribute("custSource", queryVo.getCustSource());
+        model.addAttribute("custIndustry", queryVo.getCustIndustry()); // custIndustry： 根据customer.jsp页面中的获取数据的参数定
+        model.addAttribute("custLevel", queryVo.getCustLevel());
+        model.addAttribute("custName", queryVo.getCustName());
 
         return "customer";
     }

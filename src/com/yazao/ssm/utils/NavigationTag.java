@@ -100,16 +100,16 @@ public class NavigationTag extends TagSupport {
         if (url == null || url.trim().length() == 0) {
             return "";
         }
-        if(key.equals("custName")){
-        	if(value!=null && !value.equals("")){
-        		try {
-					value = new String(value.getBytes("iso-8859-1"),"utf-8");
-				} catch (UnsupportedEncodingException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-        	}
-        }
+//        if(key.equals("custName")){
+//        	if(value!=null && !value.equals("")){
+//        		try {
+//					value = new String(value.getBytes("iso-8859-1"),"utf-8");
+//				} catch (UnsupportedEncodingException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+//        	}
+//        }
         
         if (url.indexOf("?") == -1) {
             url = url + "?" + key + "=" + value;
