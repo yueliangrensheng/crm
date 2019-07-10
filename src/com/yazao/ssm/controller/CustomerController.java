@@ -1,6 +1,7 @@
 package com.yazao.ssm.controller;
 
 import com.yazao.ssm.pojo.BaseDict;
+import com.yazao.ssm.pojo.Customer;
 import com.yazao.ssm.pojo.QueryVo;
 import com.yazao.ssm.service.BaseDictService;
 import com.yazao.ssm.service.CustomerService;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
@@ -56,5 +58,25 @@ public class CustomerController {
         model.addAttribute("custName", queryVo.getCustName());
 
         return "customer";
+    }
+
+
+    @RequestMapping(value = "/edit")
+    @ResponseBody
+    public Customer edit(long id){
+        Customer customer = customerService.findById(id);
+        return customer;
+    }
+
+    @RequestMapping(value = "/update")
+    @ResponseBody
+    public boolean update(Customer customer){
+        return customerService.update(customer);
+    }
+
+    @RequestMapping(value = "/delete")
+    @ResponseBody
+    public boolean delete(long id){
+        return customerService.delete(id);
     }
 }

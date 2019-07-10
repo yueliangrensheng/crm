@@ -42,4 +42,34 @@ public class CustomerServiceImpl implements CustomerService {
 
         return pageBean;
     }
+
+    @Override
+    public Customer findById(long id) {
+        return customerMapper.findById(id);
+    }
+
+    @Override
+    public boolean update(Customer customer) {
+
+        try {
+            customerMapper.update(customer);
+            return true;
+        } catch (Exception e) {
+            return false;
+        } finally {
+        }
+    }
+
+    @Override
+    public boolean delete(long id) {
+
+        try {
+            customerMapper.delete(id);
+            return true;
+        } catch (Exception e) {
+            return false;
+        } finally {
+
+        }
+    }
 }

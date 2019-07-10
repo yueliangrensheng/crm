@@ -10,4 +10,10 @@ public interface CustomerMapper {
     public List<Customer> findByPage(QueryVo queryVo);
 
     public int findTotalCount(QueryVo queryVo);
+
+    Customer findById(long id);
+
+    void update(Customer customer);
+
+    void delete(long id);
 }

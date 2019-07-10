@@ -23,8 +23,8 @@
         cust_createtime
 
         from customer c left join base_dict b1 on c.cust_source = b1.dict_id
-                        left join base_dict b2 on c.cust_industry = b2.dict_id
-                        left join base_dict b3 on c.cust_level = b3.dict_id
+        left join base_dict b2 on c.cust_industry = b2.dict_id
+        left join base_dict b3 on c.cust_level = b3.dict_id
 
         <include refid="findCustomerWhere"></include>
 
@@ -54,4 +54,56 @@
             </if>
         </where>
     </sql>
+
+    <select id="findById" parameterType="long" resultType="customer">
+        select * from customer where cust_id=#{id}
+    </select>
+
+    <update id="update" parameterType="customer">
+        update customer
+        <set>
+            <if test="cust_name!=null and cust_name!=''">
+                cust_name=#{cust_name},
+            </if>
+            <if test="cust_user_id!=0">
+                cust_user_id=#{cust_user_id},
+            </if>
+            <if test="cust_create_id!=0">
+                cust_create_id=#{cust_create_id},
+            </if>
+            <if test="cust_source!=null">
+                cust_source=#{cust_source},
+            </if>
+            <if test="cust_industry!=null">
+                cust_industry=#{cust_industry},
+            </if>
+            <if test="cust_level!=null">
+                cust_level=#{cust_level},
+            </if>
+            <if test="cust_linkman!=null">
+                cust_linkman=#{cust_linkman},
+            </if>
+            <if test="cust_phone!=null">
+                cust_phone=#{cust_phone},
+            </if>
+            <if test="cust_mobile!=null">
+                cust_mobile=#{cust_mobile},
+            </if>
+            <if test="cust_zipcode!=null">
+                cust_zipcode=#{cust_zipcode},
+            </if>
+            <if test="cust_address!=null">
+                cust_address=#{cust_address},
+            </if>
+            <if test="cust_createtime!=null">
+                cust_createtime=#{cust_createtime},
+            </if>
+        </set>
+
+        where cust_id=#{cust_id}
+    </update>
+
+    <delete id="delete" parameterType="long">
+        delete from customer where cust_id=#{id}
+    </delete>
 </mapper>
